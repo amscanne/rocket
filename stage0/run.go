@@ -156,7 +156,8 @@ func Run(cfg Config, dir string) {
 	}
 	log.Printf("Execing %s", ep)
 
-	args := []string{filepath.Join(common.Stage1RootfsPath(dir), ep)}
+	args := []string{"/usr/bin/novm", "create", fmt.Sprintf("--cwd=%s", dir)}
+	args = append(args, filepath.Join(common.Stage1RootfsPath(dir), ep))
 	if cfg.Debug {
 		args = append(args, "--debug")
 	}
